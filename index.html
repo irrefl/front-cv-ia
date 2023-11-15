@@ -1,11 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="utf-8">
+	<title>Chat</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Irvin Flores">
+	<meta name="author" content="Irvin Flores">
+
+	<script src="resource/js/jquery-1.10.2.min.js"></script>
+
+	<!-- Le styles -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="./resource/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="./resource/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resource/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="./resource/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="./resource/ico/favicon.png">
+
+	<link rel="stylesheet" href="./resource/css/chat.css">
+
+	<script src="./resource/js/chat.js"></script>
 </head>
+
 <body>
-    
+
+	<!-- Chat -->
+	<div class="fixed bottom-0 right-0 flex flex-col items-end ml-6 w-2/3">
+		<div class="chat-modal show mr-5 flex flex-col mb-5 shadow-lg sm:w-1/2 md:w-1/3 lg:w-1/4">
+			<!-- Close button -->
+			<div
+				class="close-chat bg-red-500 hover:bg-red-600 text-white mb-1 w-10 flex justify-center items-center px-2 py-1 rounded self-end cursor-pointer">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+				</svg>
+
+			</div>
+			<!-- Admin profile -->
+			<div class="flex justify-between items-center" style="background: black;color: white;">
+				<div class="flex items-center">
+
+
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6"
+						stroke-width="1.5" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round"
+							d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+					</svg>
+
+					<h2 class="font-semibold tracking-wider" id="chatter">Irvin Flores</h2>
+				</div>
+				<div class="flex items-center justify-center">
+					<small class="mr-1">Online</small>
+					<div class="rounded-full w-2 h-2 bg-white" id="isOnline"></div>
+				</div>
+			</div>
+			<!-- Chats -->
+			<div class="flex flex-col bg-gray-200 p-2 chat-services expand" id="chatMessages">
+			</div>
+			<!-- Send message -->
+			<form id="do-sendInput">
+				<div class="relative bg-white">
+					<input type="text" name="message" placeholder="Your message..." id="message"
+						class="pl-4 pr-16 py-2 border border-green-500 focus:outline-none w-full" />
+
+					<button
+						class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+							stroke="currentColor" class="w-6 h-6">
+							<path stroke-linecap="round" stroke-linejoin="round"
+								d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+						</svg>
+
+					</button>
+				</div>
+			</form>
+		</div>
+		<div
+			class="show-chat hidden mx-10 mb-6 mt-4 text-green-500 hover:text-green-600 flex justify-center items-center cursor-pointer text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+				stroke="currentColor" class="w-10 h-10">
+				<path stroke-linecap="round" stroke-linejoin="round"
+					d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+			</svg>
+
+		</div>
+	</div>
+
+	<!-- Login container 
+	<div class="container chat-signin mx-auto w-60">
+		<form class="form-signin">
+			<h2 class="alert alert-success text-center">test</h2>
+			<label class="block text-sm font-medium text-gray-700 mb-2" for="nickname">Nickname</label>
+
+			<input class="form-control w-full border rounded-md py-2 px-4" oninput="handleBadInputs(this)" id="nickname"
+				placeholder="Nickname" />
+
+			<div class="flex flex-col space-y-4">
+				<label class="block text-sm font-medium text-gray-700 mb-2" for="chatroom">Chatroom</label>
+				<select class="form-control w-full border rounded-md py-2 px-4" id="chatroom">
+					<option>arduino</option>
+					<option>java</option>
+					<option>go</option>
+					<option>scala</option>
+				</select>
+				<button
+					class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+					type="submit" id="enterRoom">Sign in</button>
+			</div>
+		</form>
+	</div> -->
+
+	<!-- Curriculum Container -->
+	<div class="container mx-auto">
+
+		<div class="border border-gray-300 rounded-sm shadow-lg py-10 px-10 w-4/5 mt-10 mb-10" id="cv">
+
+			<header class="bg-gray-900 text-white">
+
+				<div class="w-2/6">
+					<nav class="flex justify-end gap-2 py-4">
+
+						<a href="https://dev.to/arrefl"
+							class="bg-black-600 hover:bg-black-700 p-0 font-semibold text-white inline-flex items-center space-x-2 rounded w-12 h-12"
+							target="_blank">
+							<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
+								alt="dev.to" srcset="">
+						</a>
+
+						<a href="https://www.linkedin.com/in/irvin-r-56b264186/" alt="Irvin Flores"
+							class="bg-blue-500 hover:bg-blue-600 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
+							target="_blank">
+							<svg class="w-5 h-5 fill-current" role="img" viewBox="0 0 256 256"
+								xmlns="http://www.w3.org/2000/svg">
+								<g>
+									<path
+										d="M218.123122,218.127392 L180.191928,218.127392 L180.191928,158.724263 C180.191928,144.559023 179.939053,126.323993 160.463756,126.323993 C140.707926,126.323993 137.685284,141.757585 137.685284,157.692986 L137.685284,218.123441 L99.7540894,218.123441 L99.7540894,95.9665207 L136.168036,95.9665207 L136.168036,112.660562 L136.677736,112.660562 C144.102746,99.9650027 157.908637,92.3824528 172.605689,92.9280076 C211.050535,92.9280076 218.138927,118.216023 218.138927,151.114151 L218.123122,218.127392 Z M56.9550587,79.2685282 C44.7981969,79.2707099 34.9413443,69.4171797 34.9391618,57.260052 C34.93698,45.1029244 44.7902948,35.2458562 56.9471566,35.2436736 C69.1040185,35.2414916 78.9608713,45.0950217 78.963054,57.2521493 C78.9641017,63.090208 76.6459976,68.6895714 72.5186979,72.8184433 C68.3913982,76.9473153 62.7929898,79.26748 56.9550587,79.2685282 M75.9206558,218.127392 L37.94995,218.127392 L37.94995,95.9665207 L75.9206558,95.9665207 L75.9206558,218.127392 Z M237.033403,0.0182577091 L18.8895249,0.0182577091 C8.57959469,-0.0980923971 0.124827038,8.16056231 -0.001,18.4706066 L-0.001,237.524091 C0.120519052,247.839103 8.57460631,256.105934 18.8895249,255.9977 L237.033403,255.9977 C247.368728,256.125818 255.855922,247.859464 255.999,237.524091 L255.999,18.4548016 C255.851624,8.12438979 247.363742,-0.133792868 237.033403,0.000790807055">
+									</path>
+								</g>
+							</svg>
+						</a>
+						<a href="https://github.com/irrefl"
+							class="bg-gray-700 hover:bg-gray-800 p-2 font-medium text-white inline-flex items-center space-x-2 rounded"
+							target="_blank">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								aria-hidden="true" role="img" class="w-5" preserveAspectRatio="xMidYMid meet"
+								viewBox="0 0 24 24">
+								<g fill="none">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+										fill="currentColor" />
+								</g>
+							</svg>
+						</a>
+
+					</nav>
+
+
+					<div class="flex justify-between items-center px-4 py-8">
+
+						<div class="text-right">
+							<div class="flex justify-center mb-8">
+								<div class="relative">
+									<div
+										class="w-50 h-50 bsolute inset-0 flex items-center justify-center bg-green-500 rounded-full opacity-10 transition-opacity duration-300">
+										<div
+											class="w-32 h-32 border-4 border-white rounded-full transform hover:rotate-12">
+										</div>
+									</div>
+									<img src="./resource/img/x.jpg" alt="Irvin Flores"
+										class="rounded-full w-24 h-24 hover:opacity-0 transition-opacity duration-300">
+								</div>
+							</div>
+
+							<h1 class="text-5xl font-bold mb-2 text-left">Irvin Flores</h1>
+							<p class="text-lg">Software Developer</p>
+
+							<ul class="mt-2 mb-10">
+								<li class="px-2 mt-1"><strong class="mr-1">Phone </strong>
+									<a href="tel:+821023456789" class="block">+504984874874</a>
+								</li>
+								<li class="px-2 mt-1"><strong class="mr-1">E-mail </strong>
+									<a href="mailto:" class="block">arielreyesflores@live.com</a>
+								</li>
+								<li class="px-2 mt-1"><strong class="mr-1">Location</strong><span class="block">
+										Honduras, La Ceiba
+									</span></li>
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+
+			</header> 
+
+
+			<div class="flex gap-x-10 mt-10">
+				<div class="w-2/6">
+
+
+
+					<strong class="text-xl font-medium ">Github Stats</strong>
+					<ul class="flex w-full mt-2 mb-10">
+						<li class="px-2 mt-2 w-4/12 bg-pink-600 text-white text-center rounded-tl-lg rounded-bl-lg">HTML
+						</li>
+						<li class="px-2 mt-2 w-4/12 bg-blue-600 text-white text-center">CSS</li>
+						<li class="px-2 mt-2 w-5/12 bg-yellow-500 text-white text-center rounded-tr-lg rounded-br-lg">JS
+						</li>
+
+					</ul>
+
+					<strong class="text-xl font-medium">Skills</strong>
+					<ul class="mt-2 mb-10">
+						<li class="px-2 mt-1">HTML</li>
+						<li class="px-2 mt-1">CSS</li>
+						<li class="px-2 mt-1">JavaScript</li>
+						<li class="px-2 mt-1">React</li>
+						<li class="px-2 mt-1">Node.js</li>
+					</ul>
+					<strong class="text-xl font-medium">Further Education</strong>
+					<ul class="mt-2 mb-10">
+						<li class="px-2 mt-1">Universidad Autonoma de Honduras</li>
+						<li class="px-2 mt-1">Universidad Tecnologica de Honduras</li>
+					</ul>
+					</ul>
+					<!-- what I'm learning these days -->
+					<strong class="text-xl font-medium">Currently learning</strong>
+					<ul class="mt-2 mb-10">
+						<li class="px-2 mt-1">LLM Development and Integration</li>
+						<li class="px-2 mt-1">Deep Learning</li>
+					</ul>
+					<strong class="text-xl font-medium">Interests & Hobbies</strong>
+					<ul class="mt-2">
+						<li class="px-2 mt-1">Sustainability</li>
+						<li class="px-2 mt-1">New technologies</li>
+						<li class="px-2 mt-1">Blogging on dev.to</li>
+						<li class="px-2 mt-1">Investment</li>
+						<li class="px-2 mt-1">Travel</li>
+					</ul>
+				</div>
+				<!-- info -->
+				<div class="w-4/6">
+					<section>
+						<!-- about me -->
+						<h2 class="text-2xl pb-1 border-b font-semibold">About</h2>
+						<p class="mt-4 text-xs">This is who iam </p>
+
+					</section>
+					<section>
+						<!-- projects -->
+						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Projects</h2>
+						<ul class="mt-1">
+							<li class="py-2">
+								<div class="flex justify-between my-1">
+									<strong>Chatbot and CLI for an Interactive Curriculum Vitae</strong>
+									<p class="flex">
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">HTML</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">CSS</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">JS</span>
+									</p>
+								</div>
+								<ul class="flex mb-2">
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Live</a>
+									</li>
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Code</a>
+									</li>
+								</ul>
+								<p class="text-xs">
+									Un chatbot que tiene la capacidad de platicar con mis clientes potenciales
+								</p>
+							</li>
+							<li class="py-2">
+								<div class="flex justify-between my-1">
+									<strong>EShopping App</strong>
+									<p class="flex">
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">HTML</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">CSS</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">JS</span>
+									</p>
+								</div>
+								<ul class="flex mb-2">
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Live</a>
+									</li>
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Code</a>
+									</li>
+								</ul>
+								<p class="text-xs">
+									Una aplication de delivery con microservicios.
+								</p>
+							</li>
+							<li class="py-2">
+								<div class="flex justify-between my-1">
+									<strong>Aplicacion de inventario y venta </strong>
+									<p class="flex">
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">HTML</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">CSS</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">React</span>
+										<span
+											class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">Node.js</span>
+									</p>
+								</div>
+								<ul class="flex mb-2">
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Live</a>
+									</li>
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Code</a>
+									</li>
+								</ul>
+								<p class="text-xs">
+									Esta aplicacion permite administraar y sincronizar el inventario de multiples puesto
+									de venta
+									de una empresa de agropecuarias la apliacion maneja los usuasrios, los inventarios y
+									comparte la base de datos entre negocios
+									permititiendo buscar informacion en multiples lugares.</p>
+							</li>
+							<li class="py-2">
+								<div class="flex justify-between my-1">
+									<strong>Gaming Piano</strong>
+									<p class="flex">
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">HTML</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">CSS</span>
+										<span class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">React</span>
+										<span
+											class="bg-gray-600 text-white px-2 py-1 ml-1 text-xs rounded">Node.js</span>
+									</p>
+								</div>
+								<ul class="flex mb-2">
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Live</a>
+									</li>
+									<li><a href="#"
+											class="bg-blue-600 text-white px-2 py-1 mr-1 text-sm rounded">Code</a>
+									</li>
+								</ul>
+								<p class="text-xs">
+									Una aplicacion que permite a los usuarios aprender a tocar el piano.
+								</p>
+							</li>
+						</ul>
+					</section>
+					<section>
+
+						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Work Experiences</h2>
+						<ul class="mt-2">
+							<li class="pt-2">
+								<p class="flex justify-between text-sm"><strong class="text-base">Caracol
+										Knits</strong>2019-2021</p>
+								<p class="flex justify-between text-base">Junior Software<small>location</small></p>
+								<p class="text-justify text-xs">working
+								</p>
+							</li>
+							<li class="pt-2">
+								<p class="flex justify-between text-sm"><strong
+										class="text-base">Banpais</strong>2014-2019</p>
+								<p class="flex justify-between text-base">Job title<small>location</small></p>
+								<p class="text-justify text-xs">working
+								</p>
+							</li>
+
+							<li class="pt-2">
+								<p class="flex justify-between text-sm"><strong class="text-base">San
+										Services</strong>2014-2019</p>
+								<p class="flex justify-between text-base">Job title<small>location</small></p>
+								<p class="text-justify text-xs">working
+								</p>
+							</li>
+						</ul>
+					</section>
+					<section>
+
+						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Education</h2>
+						<ul class="mt-2">
+							<li class="pt-2">
+								<p class="flex justify-between text-sm"><strong class="text-base">
+										Universidad Autonoma de Honduras
+									</strong>2022-2019</p>
+								<p class="flex justify-between text-sm">Digital marketing<small>GPA 4.0</small></p>
+							</li>
+							<li class="pt-2">
+								<p class="flex justify-between text-sm">
+									<strong class="text-base">
+										Universidad Tecnologica de Honduraz
+									</strong>2022-2019
+								</p>
+								<p class="flex justify-between text-sm">Fashion Design<small>GPA 3.8</small></p>
+							</li>
+						</ul>
+					</section>
+				</div>
+			</div>
+			<!-- short lines to introduce myself -->
+			<footer class="mt-6">
+				<p class="bg-gray-600 text-white text-center text-xs pt-2">The best way to predict the future is to
+					create it. <small>- AbrahamLincoln</small>
+				</p>
+				<p class="bg-gray-600 text-white text-center text-sm pb-2">I am creating my future by learning new
+					things
+					and
+					making small progresses everyday.</p>
+			</footer>
+		</div>
+
+		<div class="chat-wrapper mx-auto w-1/2" style="z-index: 9999;">
+			<form id="do-chat">
+				<h2 class="text-center text-2xl text-green-500 mb-4">Chat #admin@scala</h2>
+				<table id="response" class="table table-bordered"></table>
+				<fieldset class="border rounded-md p-4">
+					<legend class="text-xl font-bold text-center">Interactive Curriculum Vitae</legend>
+					<div class="flex flex-col space-y-4">
+						<input type="text" class="w-full border rounded-md py-2 px-4" placeholder="Your message..."
+							id="messagec" />
+						<input type="submit"
+							class="bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-white mr-2 mb-2"
+							value="Hire">
+						<button class="btn btn-outline-primary w-full" type="button" id="leave-room">Leave room</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+	</div>
+
+	<script src="./resource/js/popupChat.js"></script>
+
 </body>
+
 </html>
