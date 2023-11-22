@@ -158,60 +158,94 @@
 
 					</nav>
 
-
-					<div class="flex justify-between items-center px-4 py-8">
-
-						<div class="text-right">
-							<div class="flex justify-center mb-8">
-								<div class="relative">
-									<div
-										class="w-50 h-50 bsolute inset-0 flex items-center justify-center bg-green-500 rounded-full opacity-10 transition-opacity duration-300">
-										<div
-											class="w-32 h-32 border-4 border-white rounded-full transform hover:rotate-12">
-										</div>
-									</div>
-									<img src="./resource/img/x.jpg" alt="Irvin Flores"
-										class="rounded-full w-24 h-24 hover:opacity-0 transition-opacity duration-300">
-								</div>
-							</div>
-
-							<h1 class="text-5xl font-bold mb-2 text-left">Irvin Flores</h1>
-							<p class="text-lg">Software Developer</p>
-
-							<ul class="mt-2 mb-10">
-								<li class="px-2 mt-1"><strong class="mr-1">Phone </strong>
-									<a href="tel:+821023456789" class="block">+504984874874</a>
-								</li>
-								<li class="px-2 mt-1"><strong class="mr-1">E-mail </strong>
-									<a href="mailto:" class="block">arielreyesflores@live.com</a>
-								</li>
-								<li class="px-2 mt-1"><strong class="mr-1">Location</strong><span class="block">
-										Honduras, La Ceiba
-									</span></li>
-							</ul>
-						</div>
-
-					</div>
-
 				</div>
 
-			</header> 
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center px-10 py-0">
+
+					<!-- Lado Izquierdo -->
+					<div class="text-center w-1/2">
+						<div class="mb-8">
+							<div class="relative justify-center">
+								<div class="w-50 h-50 inset-0 flex items-center justify-center bg-green-500 rounded-full opacity-10 transition-opacity duration-300">
+									<img src="./resource/img/x.jpg" alt="Irvin Flores" class="rounded-full w-24 h-24 hover:opacity-0 transition-opacity duration-300">
+								</div>
+							</div>
+						</div>
+				
+						<h1 class="text-5xl font-bold mb-2 text-center">Irvin Flores</h1>
+						<p class="text-lg">Software Developer</p>
+				
+						<ul class="mt-2 mb-10">
+							<li class="px-2 mt-1">
+								<strong class="mr-1">Phone </strong>
+								<a href="tel:+821023456789" class="block">+504984874874</a>
+							</li>
+							<li class="px-2 mt-1">
+								<strong class="mr-1">E-mail </strong>
+								<a href="mailto:" class="block">arielreyesflores@live.com</a>
+							</li>
+							<li class="px-2 mt-1">
+								<strong class="mr-1">Location</strong>
+								<span class="block">Honduras, La Ceiba</span>
+							</li>
+						</ul>
+					</div>
+				
+					<!-- Lado Derecho (Skills) -->
+					<div class="text-center w-2/3">
+						<strong class="text-xl font-medium text-center">Skills</strong>
+						
+						<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-0">
+							<li class="inline-block bg-red-500 text-white rounded-tl-lg rounded-bl-lg text-center">
+								C#
+							</li>
+							<li class="inline-block bg-blue-500 text-white text-center">
+								.NET
+							</li>
+							<li class="inline-block bg-yellow-500 text-black text-center">
+								Typescript
+							</li>
+							<li class="inline-block bg-amber-500 text-black text-center">
+								Golang
+							</li>
+							<li class="inline-block bg-orange-500 text-white text-center">
+								C++
+							</li>
+							<li class="inline-block bg-emerald-500 text-white text-center">
+								MSSQL
+							</li>
+							<li class="inline-block bg-indigo-500 text-white text-center">
+								Node
+							</li>
+							<li class="inline-block bg-cyan-500 text-white text-center">
+								Express
+							</li>
+							<li class="inline-block bg-lime-500 text-white text-center">
+								React
+							</li>
+							<li class="inline-block bg-purple-500 text-white text-center">
+								Svelte
+							</li>
+							<li class="inline-block bg-pink-500 text-white text-center">
+								jQuery
+							</li>
+							<li class="inline-block bg-violet-500 text-white text-center">
+								NoSQL
+							</li>
+							<li class="inline-block bg-pink-500 text-white text-center">
+								Git
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+
+			</header>
 
 
-			<div class="flex gap-x-10 mt-10">
-				<div class="w-2/6">
-
-
-
-					<strong class="text-xl font-medium ">Github Stats</strong>
-					<ul class="flex w-full mt-2 mb-10">
-						<li class="px-2 mt-2 w-4/12 bg-pink-600 text-white text-center rounded-tl-lg rounded-bl-lg">HTML
-						</li>
-						<li class="px-2 mt-2 w-4/12 bg-blue-600 text-white text-center">CSS</li>
-						<li class="px-2 mt-2 w-5/12 bg-yellow-500 text-white text-center rounded-tr-lg rounded-br-lg">JS
-						</li>
-
-					</ul>
+			<div class="flex gap-x-10 mt-10" style="padding-left: 1em;">
+				<div class="w-2/6 border-r">
+					<!-- we use mr-3 = margin right-->
 
 					<strong class="text-xl font-medium">Skills</strong>
 					<ul class="mt-2 mb-10">
@@ -223,8 +257,12 @@
 					</ul>
 					<strong class="text-xl font-medium">Further Education</strong>
 					<ul class="mt-2 mb-10">
-						<li class="px-2 mt-1">Universidad Autonoma de Honduras</li>
-						<li class="px-2 mt-1">Universidad Tecnologica de Honduras</li>
+						<li class="px-2 mt-1">Coursera</li>
+						<li class="px-2 mt-1">edx</li>
+						<li class="px-2 mt-1">Udacity</li>
+						<li class="px-2 mt-1">Udemy</li>
+						<li class="px-2 mt-1">CodewithMosh</li>
+						<li class="px-2 mt-1">Books</li>
 					</ul>
 					</ul>
 					<!-- what I'm learning these days -->
@@ -244,13 +282,139 @@
 				</div>
 				<!-- info -->
 				<div class="w-4/6">
-					<section>
+					<section stlye="margin-left: 2em;">
 						<!-- about me -->
 						<h2 class="text-2xl pb-1 border-b font-semibold">About</h2>
 						<p class="mt-4 text-xs">This is who iam </p>
 
 					</section>
-					<section>
+
+					<section style="padding-right: 2em;">
+
+						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Work Experiences</h2>
+						<ul class="mt-2">
+
+							<li class="pt-2 mb-5">
+								<p class="flex justify-between text-xs">
+									<strong class="text-lg">Caracol Knits</strong> 2018
+								</p>
+								<p class="flex justify-between text-base">Junior Software Analyst<small> Potrerillos,
+										Cortes</small></p>
+
+								<ul class="pl-4 mt-2 space-y-4 text-left">
+									<li class="text-justify rtl:space-x-reverse">
+										<strong class="text-base">🚀 Outstanding Contributions:
+										</strong>
+										<ul
+											class="pl-4 mt-1 space-y-1 list-disc list-inside text-justify text-sm text-gray-800 dark:text-gray-400">
+											<li class="mr-4">
+												Actively collaborated in the design and development of internal projects during the training phase at Caracol University.
+											</li>
+											<li class="mr-4">
+												Expert application of key technologies: <strong>Team Foundation, Visual Studio, SQL Server, C#, Web APIs (ServiceStack and WCF), Silverlight, and WPF.</strong>
+											</li>
+										
+										</ul>
+									</li>
+
+									<li class="text-justify rtl:space-x-reverse">
+										<strong class="text-base">🔄 Strategic Involvement in Technological Migration:</strong>
+										<ul
+											class="pl-4 mt-1 space-y-1 list-disc list-inside text-justify text-sm text-gray-800 dark:text-gray-400">
+											<li class="mr-4">
+												Contributed to the technological migration process, applying Scrum, DDD, TDD, and BDD in interdisciplinary meetings for efficient execution and exhaustive testing.
+											</li>
+											
+										</ul>
+									</li>
+
+									<li class="text-justify rtl:space-x-reverse">
+										<strong class="text-base">🤝 Deep Collaboration with the Team & Software Architect:</strong>
+										<ul
+											class="pl-4 mt-1 space-y-1 list-disc list-inside text-justify text-sm text-gray-800 dark:text-gray-400">
+											<li class="mr-4">
+												Worked closely with the software architect and the team, applying agile principles. Ensured code quality before deployment, guided by test-driven development (TDD).
+											</li>
+											
+										</ul>
+									</li>
+
+									<li class="text-justify rtl:space-x-reverse">
+										<strong class="text-base">💡 Comprehensive Mastery of Web APIs and Design Patterns:</strong>
+										<ul
+											class="pl-4 mt-1 space-y-1 list-disc list-inside text-justify text-sm text-gray-800 dark:text-gray-400">
+											<li class="mr-4">
+												Developed and understood the implementation of Web APIs using design patterns, including SOLID and others. Managed various implementation aspects, from the frontend with Silverlight to databases with SQL Server.
+											</li>
+											
+										</ul>
+									</li>
+
+								</ul>
+
+							</li>
+
+							<li class="pt-2 mb-5">
+								<p class="flex justify-between text-xs">
+									<strong class="text-lg">Banpais</strong> 2019
+								</p>
+								<p class="flex justify-between text-base">.NET Software Developer<small> San Pedro Sula,
+										Cortes</small></p>
+
+								<ul class="pl-4 mt-2 space-y-4 text-left">
+									<li class="text-justify rtl:space-x-reverse">
+										<strong class="text-base">🌐 Strategic Problem-Solving and Collaboration:</strong>
+										<ul
+											class="pl-4 mt-1 space-y-1 list-disc list-inside text-justify text-sm text-gray-800 dark:text-gray-400">
+											<li class="mr-4">
+												Led strategic calls and meetings, collaborating across departments to streamline processes and resolve challenges.
+											</li>
+											<li class="mr-4">
+												Actively engaged with other departments, contributing to the bank's success through effective problem-solving.</li>
+											<li class="mr-4">
+												
+												Contributed to a 10% growth in the net loan portfolio, totaling L 40,451 MM (about US$1.6 billion) by the end of 2019.
+											</li>
+
+											<li class="mr-4">
+												Supported the bank in maintaining a robust financial position, reflected in a 16.4% return on average equity (ROAE) in 2019, ensuring sustained profitability.
+											</li>
+										</ul>
+									</li>
+
+									<li class="text-justify rtl:space-x-reverse">
+										<strong class="text-base">💼 Project Showcase - Work Order Management System:</strong>
+										<ul
+											class="pl-4 mt-1 space-y-1 list-disc list-inside text-justify text-sm text-gray-800 dark:text-gray-400">
+											<li class="mr-4">
+												Spearheaded the development of a comprehensive Work Order Management System to track the entire software development process.
+											</li>
+											<li class="mr-4">
+												Frontend Development: .NET WinForms, ASP.NET WebPages, Bootstrap, CSS, JavaScript.</li>
+											<li class="mr-4">
+												Backend Development: C# as the primary backend language, implementing Entity Framework DataFirst.
+											</li>
+											<li class="mr-4">
+												Database Integration: Utilized SQL Server, creating queries and stored procedures.
+											</li>
+											<li class="mr-4">
+												Data Migration: Integrated data from AS400 to SQL Server, enhancing data accessibility and retrieval.
+											</li>
+											<li class="mr-4">
+												Methodology: Implemented the cascade method for streamlined software development.
+											</li>
+										</ul>
+									</li>
+
+								</ul>
+
+							</li>
+
+						</ul>
+					</section>
+
+
+					<section style="padding-right: 2em;">
 						<!-- projects -->
 						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Projects</h2>
 						<ul class="mt-1">
@@ -347,35 +511,8 @@
 							</li>
 						</ul>
 					</section>
-					<section>
 
-						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Work Experiences</h2>
-						<ul class="mt-2">
-							<li class="pt-2">
-								<p class="flex justify-between text-sm"><strong class="text-base">Caracol
-										Knits</strong>2019-2021</p>
-								<p class="flex justify-between text-base">Junior Software<small>location</small></p>
-								<p class="text-justify text-xs">working
-								</p>
-							</li>
-							<li class="pt-2">
-								<p class="flex justify-between text-sm"><strong
-										class="text-base">Banpais</strong>2014-2019</p>
-								<p class="flex justify-between text-base">Job title<small>location</small></p>
-								<p class="text-justify text-xs">working
-								</p>
-							</li>
-
-							<li class="pt-2">
-								<p class="flex justify-between text-sm"><strong class="text-base">San
-										Services</strong>2014-2019</p>
-								<p class="flex justify-between text-base">Job title<small>location</small></p>
-								<p class="text-justify text-xs">working
-								</p>
-							</li>
-						</ul>
-					</section>
-					<section>
+					<section style="padding-right: 2em;">
 
 						<h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Education</h2>
 						<ul class="mt-2">
@@ -383,15 +520,16 @@
 								<p class="flex justify-between text-sm"><strong class="text-base">
 										Universidad Autonoma de Honduras
 									</strong>2022-2019</p>
-								<p class="flex justify-between text-sm">Digital marketing<small>GPA 4.0</small></p>
+								<p class="flex justify-between text-sm">Computer Science, Agronomic
+									Engineering<small>GPA 4.0</small></p>
 							</li>
 							<li class="pt-2">
 								<p class="flex justify-between text-sm">
 									<strong class="text-base">
-										Universidad Tecnologica de Honduraz
+										Universidad Tecnologica de Honduras
 									</strong>2022-2019
 								</p>
-								<p class="flex justify-between text-sm">Fashion Design<small>GPA 3.8</small></p>
+								<p class="flex justify-between text-sm">Computing Engineering<small>GPA 3.8</small></p>
 							</li>
 						</ul>
 					</section>

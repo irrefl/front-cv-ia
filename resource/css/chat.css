@@ -10,7 +10,9 @@
     }
 }
 
+*{
 
+}
 
 .chat-services {
     transition: max-height 0.5s;
