@@ -88,3 +88,9 @@
 .relative button:hover {
     color: #005500;
 }
+
+main{
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
