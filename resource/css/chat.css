@@ -3,6 +3,7 @@
     --color-fg: #ffffff;
 }
 
+/* Dark mode styles */
 @media (prefers-color-scheme: dark) {
     :root {
         --color-bg: #ffffff;
@@ -10,10 +11,14 @@
     }
 }
 
-*{
-
+/* Global reset and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Responsive chat services */
 .chat-services {
     transition: max-height 0.5s;
     max-height: 0;
@@ -24,10 +29,12 @@
     overflow-y: auto;
 }
 
+/* Responsive message width */
 .message {
     max-width: 250px;
 }
 
+/* Chat modal styles with keyframes animation */
 .chat-modal {
     transition: opacity 0.5s, transform 0.5s;
     opacity: 0;
@@ -51,11 +58,13 @@
     }
 }
 
+/* Flex container for relative positioning */
 .relative {
     display: flex;
     align-items: center;
 }
 
+/* Input styling within .relative */
 .relative input[type="text"] {
     flex: 1;
     padding: 0.5rem;
@@ -64,6 +73,7 @@
     outline: none;
 }
 
+/* Button styling within .relative */
 .relative button {
     padding: 0.5rem 1rem;
     background-color: #ffffff;
@@ -74,6 +84,7 @@
     outline: none;
 }
 
+/* Hover effect for the button */
 .relative button:hover {
     color: #005500;
 }
