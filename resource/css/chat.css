@@ -100,6 +100,7 @@ main{
     margin-top: 4vh;
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -109,9 +110,9 @@ main{
   }
   .bodyx .block-container {
     position: relative;
-    width: 90px;
-    height: 90px;
-    margin: 32px;
+    width: 66.6px;
+    height: 66.6px;
+    margin: 16px;
     transition: 250ms;
     perspective: 500px;
   }
@@ -192,6 +193,7 @@ main{
   align-items: center;
   flex-wrap: wrap;
   padding: 40px 0;
+  width: 100%
 }
 
 .picContainer .picBox

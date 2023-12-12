@@ -178,7 +178,7 @@
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center px-10 py-0">
 
 					<!-- Lado Izquierdo -->
-					<div class="text-center w-1/2">
+					<div class="text-center">
 						<div class="picContainer">
 							<div class="picBox">
 								<span></span>
@@ -194,52 +194,62 @@
 						</div>
 					</div>
 
+					
 					<!-- Lado Derecho (Skills) -->
 					<div class="text-center w-2/3">
 						<strong class="text-xl font-medium text-center">Skills</strong>
 
-						<ul class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-0">
-							<li class="inline-block bg-red-500 text-white  text-center">
-								C#
-							</li>
-							<li class="inline-block bg-blue-500 text-white text-center">
-								.NET
-							</li>
-							<li class="inline-block bg-yellow-500 text-black text-center">
-								Typescript
-							</li>
-							<li class="inline-block bg-green-500 text-black text-center">
-								Golang
-							</li>
-							<li class="inline-block bg-pink-800 text-white text-center">
-								C++
-							</li>
-							<li class="inline-block bg-yellow-400 text-white text-center">
-								MSSQL
-							</li>
-							<li class="inline-block bg-indigo-500 text-white text-center">
-								Node
-							</li>
-							<li class="inline-block bg-purple-600 text-white text-center">
-								Express
-							</li>
-							<li class="inline-block bg-indigo-600 text-white text-center">
-								React
-							</li>
-							<li class="inline-block bg-purple-500 text-white text-center">
-								Svelte
-							</li>
-							<li class="inline-block bg-pink-500 text-white text-center">
-								jQuery
-							</li>
-							<li class="inline-block bg-indigo-500 text-white text-center">
-								NoSQL
-							</li>
-							<li class="inline-block bg-pink-500 text-white text-center">
-								Git
-							</li>
+						<ul class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-0"
+							id="SkillLizt">
+							
 						</ul>
 					</div>
+
+					<script>
+						let skills = ['C#'
+									, '.Net'
+									,'Golang'
+									,'Typescript'
+									,'C++'
+									,'MSSQL'
+									,'Node,Deno'
+									,'Svelte'
+									,'Jquery',
+									'Git,Svn'
+		
+					]	
+
+					const white = 'text-white'
+					const black = 'text-black'
+					const stylez = [{ color : 'bg-red-500', text : white}
+						,{color : 'bg-red-500', text : white}
+						,{color : 'bg-blue-500', text : white}
+						,{color : 'bg-yellow-500', text : white}
+						,{color : 'bg-green-500', text : black}
+						,{color : 'bg-pink-800', text : white}
+						,{color : 'bg-yellow-400', text : white}
+						,{color : 'bg-indigo-500', text : white}
+						,{color : 'bg-purple-600', text : white}
+						,{color : 'bg-purple-500', text : white}
+						,{color : 'bg-indigo-500', text : white}
+						,{color : 'bg-indigo-600', text : white}
+						,{color : 'bg-green-500', text : white}
+						,{color : 'bg-purple-500', text : white}
+						,{color : 'bg-ping-500', text : white}
+				]
+				
+						let liz = skills.map((item, key) => {
+							const {color, text} = stylez[key]
+							const li = `<li class="inline-block ${stylez[key].color} ${stylez[key].text} text-center">
+									${item}
+								</li>`
+
+							return li;
+						}).join('')
+
+						const skillList = document.querySelector('#SkillLizt')
+						skillList.innerHTML = liz;
+					</script>
 
 				</div>
 
@@ -251,18 +261,7 @@
 				<!-- info -->
 				<div class="w-4/6">
 
-					<section class="p3-3">
-						<div class="w-2/6 border-r">
-							<!-- we use mr-3 = margin right-->
-		
-						
-							<!-- what I'm learning these days -->
-						
-							
-						</div>
-
-				
-					</section>
+					
 					<section class="pr-3 pl-3">
 						<!-- about me -->
 						<h2 class="text-2xl pb-1 border-b font-semibold">About</h2>
@@ -293,7 +292,7 @@
 													d="M15.2 1C12.4 1 9.9 2.5 8.5 4.8C8 4.7 7.5 4.6 7 4.6C3.7 4.6 1 7.3 1 10.6C1 13.9 3.7 16.6 7 16.6H15.2C19.5 16.6 23 13.1 23 8.8C23 4.5 19.5 1 15.2 1Z"
 													fill="url(#gradient-full)" />
 											</svg>
-											<span style="z-index: 999;">adfsd</span>
+										
 										</div>
 										
 									</div>
