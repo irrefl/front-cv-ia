@@ -328,8 +328,8 @@
             </div>
 
             <script>
-              let w = "text-white",
-                b = "text-black";
+              let w = "text-white bold",
+                b = "text-black bold";
               let a = [
                 { c: "bg-gray-50", t: b },
                 { c: "bg-gray-100", t: b },
@@ -414,6 +414,7 @@
               ];
               a = a.filter((a) => Number(a.c.match(/\d+$/)[0]) >= 400);
 
+
               function shuffleArray(array) {
                 for (let i = array.length - 1; i > 0; i--) {
                   const j = Math.floor(Math.random() * (i + 1));
@@ -435,10 +436,6 @@
                 index++;
                 return value;
               }
-
-              // Example usage
-              const randomValue1 = getNextNonRepeatingValue();
-              const randomValue2 = getNextNonRepeatingValue();
 
               const skillz = [
                 { name: "C#", color: getNextNonRepeatingValue() },
@@ -484,11 +481,12 @@
                 { name: "CI/DI", color: getNextNonRepeatingValue() },
               ];
 
+
               let generateSkillList = (_skills) => {
                 let liz = _skills
                   .map((item, key) => {
                     const { name, color } = item;
-                    const li = `<li class="inline-block ${color.c} ${color.t} text-center">
+                    const li = `<li class="inline-block ${color.c} ${color.t} text-center ">
 										${name}
 									</li>`;
 

@@ -397,6 +397,12 @@ main{
   box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
 }
 
+#SkillLizt li:hover{
+  background: #ffcf4d;
+  border: 1px solid rgba(255, 0, 88, 0.4);
+  box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+}
+
 .profileText{
     position: relative;
     display: flex;
