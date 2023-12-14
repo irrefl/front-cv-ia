@@ -21,7 +21,7 @@
 /* Responsive chat services */
 .chat-services {
     transition: max-height 0.5s;
-    max-height: 0;
+   /* max-height: 0; cambiada reciente */
 }
 
 .chat-services.expand {
@@ -436,7 +436,7 @@ main{
 }
 
 .profileText h2{
-    color:#fff;
+    
     font-size: 1.4em;
     margin-top:20px;
     text-transform: uppercase;
