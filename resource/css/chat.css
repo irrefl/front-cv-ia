@@ -397,11 +397,24 @@ main{
   box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
 }
 
-#SkillLizt li:hover{
-  background: #ffcf4d;
-  border: 1px solid rgba(255, 0, 88, 0.4);
-  box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+#SkillLizt li {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+  font-size: 0.9rem; /* Adjust the font size as needed */
+  color: #fff; /* Set the initial text color */
+  text-shadow: 1px 1px 1px transparent; /* Set the initial text shadow */
+  -webkit-font-smoothing: antialiased; /* Improve font rendering on macOS */
+  font-weight: bold;
 }
+
+#SkillLizt li:hover {
+  background: #ffcf4d;
+  box-shadow: 0 0 20px rgba(255, 207, 77, 0.8), 0 0 40px rgba(255, 207, 77, 0.4);
+  transform: translateY(-5px);
+  color: black; /* Change the text color on hover */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8); /* Increase the text shadow on hover */
+}
+
 
 .profileText{
     position: relative;

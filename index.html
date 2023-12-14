@@ -85,6 +85,12 @@
 
       gtag("config", "G-406EGYMQQS");
     </script>
+
+    <style>
+       .color-transition {
+      transition: background-color 1s linear; /* Longer transition duration with linear easing */
+    }
+    </style>
   </head>
 
   <body>
@@ -95,7 +101,7 @@
       >
         <!-- Close button -->
         <div
-          class="close-chat bg-red-500 hover:bg-red-600 text-white mb-1 w-10 flex justify-center items-center px-2 py-1 rounded self-end cursor-pointer"
+          class="close-chat bg-red-900 hover:bg-red-600 text-white mb-1 w-10 flex justify-center items-center px-2 py-1 rounded self-end cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -158,8 +164,8 @@
               class="pl-4 pr-16 py-2 border border-green-500 focus:outline-none w-full"
             />
 
-            <button
-              class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+            <button type="button"
+              class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -229,15 +235,7 @@
         <header class="bg-gray-900 text-white">
           <div class="w-2/6">
             <nav class="flex justify-end gap-2 py-4">
-              <!--
-						<a href="https://dev.to/arrefl"
-							class="hover:bg-black-700 w-9"
-							target="_blank">
-							<img src="./resource/img/dev-to.svg"
-								class="bg-white"
-								alt="dev.to" srcset="">
-						</a> -->
-
+  
               <a
                 href="https://www.linkedin.com/in/irvin-r-56b264186/"
                 alt="Irvin Flores"
@@ -279,6 +277,23 @@
                       fill="currentColor"
                     />
                   </g>
+                </svg>
+              </a>
+
+              <a
+                href="https://www.youtube.com/channel/UCMdDWRogZKZwEo26Jqmkc9Q"
+                target="_blank"
+                class="flex bg-red-900 hover:bg-red-100 p-2 font-medium text-white inline-flex items-center space-x-2 rounded"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+                  />
                 </svg>
               </a>
 
@@ -412,8 +427,10 @@
                 { c: "bg-pink-800", t: w },
                 { c: "bg-pink-900", t: w },
               ];
-              a = a.filter((a) => Number(a.c.match(/\d+$/)[0]) >= 400);
 
+              let onlyColors = a.filter(
+                (a) => Number(a.c.match(/\d+$/)[0]) >= 400
+              );
 
               function shuffleArray(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -423,7 +440,7 @@
                 return array;
               }
 
-              const shuffledArray = shuffleArray(a);
+              const shuffledArray = shuffleArray(onlyColors);
 
               let index = 0;
 
@@ -451,7 +468,7 @@
                 { name: "NodeJS", color: getNextNonRepeatingValue() },
                 { name: "Deno", color: getNextNonRepeatingValue() },
                 { name: "MSSQL", color: getNextNonRepeatingValue() },
-                { name: "MSSQL", color: getNextNonRepeatingValue() },
+                { name: "DynamoDB", color: getNextNonRepeatingValue() },
 
                 { name: "MySQL", color: getNextNonRepeatingValue() },
 
@@ -463,7 +480,7 @@
                 { name: "Redis", color: getNextNonRepeatingValue() },
                 { name: "sqlite", color: getNextNonRepeatingValue() },
                 { name: "couchbase", color: getNextNonRepeatingValue() },
-                { name: "GraphSQL", color: getNextNonRepeatingValue() },
+                { name: "GraphQL", color: getNextNonRepeatingValue() },
                 { name: "MongoDB", color: getNextNonRepeatingValue() },
 
                 { name: "GIT", color: getNextNonRepeatingValue() },
@@ -478,15 +495,16 @@
                 ,
                 { name: "Kubernetes", color: getNextNonRepeatingValue() },
                 { name: "AWS", color: getNextNonRepeatingValue() },
-                { name: "CI/DI", color: getNextNonRepeatingValue() },
+                { name: "Linux", color: getNextNonRepeatingValue() },
+                { name: "VMs", color: getNextNonRepeatingValue() },
+                { name: "Shell/Bash", color: getNextNonRepeatingValue() },
               ];
-
 
               let generateSkillList = (_skills) => {
                 let liz = _skills
                   .map((item, key) => {
                     const { name, color } = item;
-                    const li = `<li class="inline-block ${color.c} ${color.t} text-center ">
+                    const li = `<li class="inline-block ${color.c} ${color.t} text-center" id="my${key}">
 										${name}
 									</li>`;
 
@@ -499,6 +517,19 @@
 
               const skillList = document.querySelector("#SkillLizt");
               skillList.innerHTML = generateSkillList(skillz);
+
+              const skillzz = document.querySelectorAll("#SkillLizt li");
+              console.table(skillzz);
+              setInterval(() => {
+                skillzz.forEach((el, key) => {
+                  let newColor = getNextNonRepeatingValue();
+                  el.className = `${newColor.c} ${newColor.t}`;
+                  el.classList.remove("color-transition"); // Remove the transition class
+                  void el.offsetWidth; // Trigger reflow to apply transition
+                  el.classList.add("color-transition"); // Add the transition class back
+               
+                });
+              }, 2000);
             </script>
           </div>
         </header>
@@ -1235,9 +1266,9 @@
                 class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"
               >
                 <li
-                  class="bg-gray-100 shadow-lg rounded-lg overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+                  class="bg-gray-100 shadow-lg rounded-lg overflow-hidden transition duration-500"
                 >
-                  <div class="aspect-w-16 aspect-h-9 relative">
+                  <div class="aspect-w-16 aspect-h-1 relative">
                     <img
                       src="chatbot.jpg"
                       alt="Chatbot"
@@ -1261,7 +1292,7 @@
                     </div>
                   </div>
                   <div class="p-4">
-                    <div class="flex justify-between my-1">
+                    <div class="flex justify-between my-0 z-">
                       <strong>Chatbot</strong>
                     </div>
                     <ul class="flex mb-2">
@@ -1301,7 +1332,7 @@
                   </div>
                 </li>
                 <li
-                  class="bg-gray-100 shadow-lg rounded-lg overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+                  class="bg-gray-100 shadow-lg rounded-lg overflow-hidden transition duration-500 ease-in-out"
                 >
                   <div class="aspect-w-16 aspect-h-9 relative">
                     <img
@@ -1327,7 +1358,7 @@
                     </div>
                   </div>
                   <div class="p-4">
-                    <div class="flex justify-between my-1">
+                    <div class="flex justify-between my-1 -z-50" style="z-index: -9999;">
                       <strong>EShopping App</strong>
                     </div>
                     <ul class="flex mb-2">
