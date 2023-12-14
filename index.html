@@ -86,11 +86,7 @@
       gtag("config", "G-406EGYMQQS");
     </script>
 
-    <style>
-       .color-transition {
-      transition: background-color 1s linear; /* Longer transition duration with linear easing */
-    }
-    </style>
+   
   </head>
 
   <body>
@@ -101,7 +97,7 @@
       >
         <!-- Close button -->
         <div
-          class="close-chat bg-red-900 hover:bg-red-600 text-white mb-1 w-10 flex justify-center items-center px-2 py-1 rounded self-end cursor-pointer"
+          class="close-chat bg-red-900 hover:bg-red-600 text-white mb-1 w-10 h-10 flex justify-center items-center px-2 py-1 rounded cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +105,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="w-4 h-4"
           >
             <path
               stroke-linecap="round"
@@ -519,7 +515,7 @@
               skillList.innerHTML = generateSkillList(skillz);
 
               const skillzz = document.querySelectorAll("#SkillLizt li");
-              console.table(skillzz);
+              
               setInterval(() => {
                 skillzz.forEach((el, key) => {
                   let newColor = getNextNonRepeatingValue();
