@@ -1,7 +1,7 @@
 var wsocket;
 //var serviceLocation = "ws://0.0.0.0:8080/chat/";
 //var serviceLocation = "ws://192.168.100.3:8080/chat/";
-let serverLocation = '192.168.100.3'
+let serverLocation = 'localhost'
 let port = '8080'
 let chatRoute = 'chat'
 let localhost = window.location.hostname;
@@ -88,7 +88,7 @@ function leaveRoom() {
     $('.chat-signin').show();
     $nickName.focus();
 }
-/*
+
 $(document).ready(function () {
     $nickName = $('#nickname');
     $message = $('#message');
@@ -126,4 +126,4 @@ $(document).ready(function () {
     $('#leave-room').click(function () {
         leaveRoom();
     });
-}); */
+})

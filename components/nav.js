@@ -1,6 +1,5 @@
-
-
-const template = ` <nav class="flex justify-end gap-2 py-4">
+const nav = () => {
+  const template = ` <nav class="flex justify-end gap-2 py-4">
 <a href="https://www.linkedin.com/in/irvin-r-56b264186/" alt="Irvin Flores"
   class="bg-blue-500 hover:bg-blue-600 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
   target="_blank">
@@ -51,8 +50,9 @@ const template = ` <nav class="flex justify-end gap-2 py-4">
     </svg>
   </div>
 </div>
-</nav>`
+</nav>`;
 
-let nav = document.querySelector('#nav')
+  return template;
+};
 
-nav.innerHTML = template;
+document.querySelector("#nav").innerHTML = nav();
