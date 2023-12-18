@@ -1,11 +1,12 @@
 var wsocket;
 //var serviceLocation = "ws://0.0.0.0:8080/chat/";
 //var serviceLocation = "ws://192.168.100.3:8080/chat/";
-let serverLocation = "localhost";
-let port = "8080";
-let chatRoute = "chat";
-let localhost = window.location.hostname;
-let serviceLocation = `ws://${localhost}:${port}/${chatRoute}/`;
+//let serverLocation = "localhost";
+const port = "8080";
+const chatRoute = "chat";
+//let localhost = window.location.hostname;
+const localhost = 'cv-chat-ia.onrender.com'
+const serviceLocation = `wss://${localhost}:${port}/${chatRoute}/`;
 var $nickName;
 var $message;
 var $chatWindow;
@@ -75,7 +76,7 @@ function connectToChatserver() {
 
   return new Promise((resolve, reject) => {
     wsocket = new WebSocket(serviceLocation + room);
-
+    debugger;
     wsocket.onopen = (event) => {
       console.log("WebSocket connection opened:", event);
 
