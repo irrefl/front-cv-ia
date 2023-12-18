@@ -80,6 +80,15 @@ function connectToChatserver() {
       console.log("WebSocket connection opened:", event);
 
       resolve(wsocket);
+      (async () => {
+        let saludo = "Bienvenido a nuestro chat en que puedo ayudarte?";
+        let responseElement = document.getElementById("adminMessage");
+        let typingSpeed = 40;
+        
+        await simulateTyping(saludo, responseElement, typingSpeed);
+        
+      })();
+
     };
 
     wsocket.onerror = (event) => {
@@ -93,17 +102,15 @@ function connectToChatserver() {
         '<div class="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200">connecting...</div>';
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
-      (async () => {
-        let saludo = "No puedo conversar ahora.";
-        let responseElement = document.getElementById("adminMessage");
-        let typingSpeed = 40;
-        
-        await simulateTyping(saludo, responseElement, typingSpeed);
-        await simulateTyping('\n', responseElement, typingSpeed);
-        await simulateTyping('Lamento las interrupciones.', responseElement, typingSpeed);
-        
-      })();
-
+        (async () => {
+            let saludo = "Estoy fuera de servicio ahora, en que mas puedo ayudarte?";
+            let responseElement = document.getElementById("adminMessage");
+            let typingSpeed = 40;
+            
+            await simulateTyping(saludo, responseElement, typingSpeed);
+            
+          })();
+    
     };
   });
 }
@@ -168,14 +175,7 @@ $(document).ready(function () {
     connectToChatserver()
       .then((_wssocket) => {
         _wssocket.onmessage = onMessageReceived;
-        (async () => {
-            let saludo = "Bienvenido a nuestro chat en que puedo ayudarte?";
-            let responseElement = document.getElementById("adminMessage");
-            let typingSpeed = 40;
-            
-            await simulateTyping(saludo, responseElement, typingSpeed);
-            
-          })();
+ 
       })
       .catch((error) => {
         console.warn(
@@ -191,6 +191,7 @@ $(document).ready(function () {
       $(".chat-wrapper").show();
       $("#cv").show();
       $message.focus();
+
 
       
   });
