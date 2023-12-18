@@ -77,8 +77,40 @@ function sendMessage() {
 
 function connectToChatserver() {
     room = $('#chatroom option:selected').val();
+    
+    /*
     wsocket = new WebSocket(serviceLocation + room);
+
+    wsocket.onerror = function(event) {
+        console.error("WebSocket error:", event);
+    };
+    
     wsocket.onmessage = onMessageReceived;
+    console.table(serviceLocation);
+
+    */
+
+    return new Promise((resolve, reject) => {
+         wsocket = new WebSocket(serviceLocation + room);
+    
+        wsocket.onopen = (event) => {
+          console.log("WebSocket connection opened:", event);
+          //wsocket.onmessage = onMessageReceived;
+          // Perform any initialization or additional setup here
+          resolve(wsocket);
+        };
+    
+        wsocket.onerror = (event) => {
+          console.error("WebSocket error:", event);
+          reject(new Error("WebSocket connection failed"));
+        };
+    
+        wsocket.onclose = (event) => {
+          console.log("WebSocket connection closed:", event);
+          // You may choose to handle the WebSocket closure if needed
+        };
+      });
+
 }
 
 function leaveRoom() {
@@ -109,7 +141,18 @@ $(document).ready(function () {
             
             return;
         }
-        connectToChatserver();
+        connectToChatserver()
+        .then((_wssocket) => {
+            // Continue with the rest of your code
+            _wssocket.onmessage = onMessageReceived;
+            console.table(serviceLocation);
+        })
+        .catch((error) => {
+            console.warn("WebSocket connection couldn't be established:", error.message);
+            // You can choose to ignore this and continue with the rest of your code
+            // Or you can perform additional error handling if needed
+        });
+
         $('.chat-wrapper h2').text('Chat # ' + $nickName.val() + "@" + room);
         $('.chat-signin').hide();
         $('.chat-wrapper').show();
