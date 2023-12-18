@@ -6,10 +6,10 @@ const SignIn = () =>{
       <form class="form-signin">
         <h2 class="text-center text-green-700 text-lg font-bold mb-4">Chat</h2>
         <label class="block text-sm font-medium text-gray-700 mb-2" 
-                for="nickname">Nickname</label>
+                for="nickname">e-mail</label>
         <input class="form-control w-full border rounded-md py-2 px-4" 
                 oninput="handleBadInputs(this)" id="nickname"
-          placeholder="e-mail" />
+                 placeholder="Use any email" />
 
         <div class="flex flex-col space-y-4">
           <label class="block text-sm font-medium text-gray-700 mb-2" for="chatroom">Chatroom</label>

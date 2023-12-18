@@ -1,20 +1,20 @@
 var wsocket;
 //var serviceLocation = "ws://0.0.0.0:8080/chat/";
 //var serviceLocation = "ws://192.168.100.3:8080/chat/";
-let serverLocation = 'localhost'
-let port = '8080'
-let chatRoute = 'chat'
+let serverLocation = "localhost";
+let port = "8080";
+let chatRoute = "chat";
 let localhost = window.location.hostname;
-let serviceLocation = `ws://${localhost}:${port}/${chatRoute}/`
+let serviceLocation = `ws://${localhost}:${port}/${chatRoute}/`;
 var $nickName;
 var $message;
 var $chatWindow;
-var room = '';
+var room = "";
 
 function onMessageReceived(evt) {
-    var msg = JSON.parse(evt.data); // native API
+  var msg = JSON.parse(evt.data); // native API
 
-    let userMessage = `
+  let userMessage = `
     <div class="message bg-green-500 text-white p-2 self-end my-2 rounded-md shadow ml-3">
         <div class="flex items-end justify-end mb-1">
             <div class="flex flex-col items-end">
@@ -31,7 +31,7 @@ function onMessageReceived(evt) {
         <div class="text-sm">${msg.message}</div>
     </div>`;
 
-    let adminMessage = `
+  let adminMessage = `
     <div class="message text-white p-2 self-start my-2 rounded-md shadow mr-3"
             style="background-color: rgb(79 70 229);">
         <div class="flex items-start justify-start mb-1">
@@ -48,123 +48,106 @@ function onMessageReceived(evt) {
         <div class="text-white">${msg.message}</div>
     </div>`;
 
-    let currentChatter = msg.sender === 'admin' ? adminMessage : userMessage;
+  let currentChatter = msg.sender === "admin" ? adminMessage : userMessage;
 
-    chatMessages.innerHTML += currentChatter;
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  chatMessages.innerHTML += currentChatter;
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    let currentChatterName = msg.sender === 'admin' ? 'admin' : msg.sender;
-    let chatter = document.querySelector('#chatter')
+  let currentChatterName = msg.sender === "admin" ? "admin" : msg.sender;
+  let chatter = document.querySelector("#chatter");
 
-    chatter.textContent = currentChatterName;
+  chatter.textContent = currentChatterName;
 }
 
-
 function sendMessage() {
-
-    const msg = `{
+  const msg = `{
         "message" : "${$message.val()}",
         "sender" : "${$nickName.val()}",
         "questionCategory" : "development",
         "created_at" : "${new Date()}"
-    }`
-    wsocket.send(msg);
-    $message.val('').focus();
+    }`;
+  wsocket.send(msg);
+  $message.val("").focus();
 }
 
 function connectToChatserver() {
-    room = $('#chatroom option:selected').val();
-    
-    /*
+  room = $("#chatroom option:selected").val();
+
+  return new Promise((resolve, reject) => {
     wsocket = new WebSocket(serviceLocation + room);
 
-    wsocket.onerror = function(event) {
-        console.error("WebSocket error:", event);
+    wsocket.onopen = (event) => {
+      console.log("WebSocket connection opened:", event);
+
+      resolve(wsocket);
     };
-    
-    wsocket.onmessage = onMessageReceived;
-    console.table(serviceLocation);
 
-    */
+    wsocket.onerror = (event) => {
+      console.error("WebSocket error:", event);
+      reject(new Error("WebSocket connection failed"));
+    };
 
-    return new Promise((resolve, reject) => {
-         wsocket = new WebSocket(serviceLocation + room);
-    
-        wsocket.onopen = (event) => {
-          console.log("WebSocket connection opened:", event);
-       
-          resolve(wsocket);
-        };
-    
-        wsocket.onerror = (event) => {
-          console.error("WebSocket error:", event);
-          reject(new Error("WebSocket connection failed"));
-        };
-    
-        wsocket.onclose = (event) => {
-          console.log("WebSocket connection closed:", event);
-          chatMessages.innerHTML += ' <div class="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200">connecting...</div>';
-          chatMessages.scrollTop = chatMessages.scrollHeight;
+    wsocket.onclose = (event) => {
+      console.log("WebSocket connection closed:", event);
+      chatMessages.innerHTML +=
+        '<div class="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200">connecting...</div>';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
 
-          setTimeout(()=>{
-            chatMessages.innerHTML = ' <div class="px-3 py-1 text-xs font-medium leading-none text-center text-blue-800 bg-blue-200 rounded-full animate-pulse dark:bg-blue-900 dark:text-blue-200">servidor no conectado...</div>';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-          },4000);
-        };
-      });
+      (async () => {
+        let saludo = "No puedo conversar ahora.";
+        let responseElement = document.getElementById("adminMessage");
+        let typingSpeed = 40;
+        
+        await simulateTyping(saludo, responseElement, typingSpeed);
+        await simulateTyping('\n', responseElement, typingSpeed);
+        await simulateTyping('Lamento las interrupciones.', responseElement, typingSpeed);
+        
+      })();
 
+    };
+  });
 }
 
 function leaveRoom() {
-    wsocket.close();
-    $chatWindow.empty();
-    $('.chat-wrapper').hide();
-    $('.chat-signin').show();
-    $nickName.focus();
+  wsocket.close();
+  $chatWindow.empty();
+  $(".chat-wrapper").hide();
+  $(".chat-signin").show();
+  $nickName.focus();
+}
+
+function wait(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+async function simulateTyping(text, element, speed) {
+  for (let i = 0; i < text.length; i++) {
+    element.textContent += text[i];
+   
+    await wait(speed);
+  }
 }
 
 $(document).ready(function () {
-    $nickName = $('#nickname');
-    $message = $('#message');
+  $nickName = $("#nickname");
+  $message = $("#message");
 
-    $chatWindow = $('#response');
-    chatMessages = document.querySelector('#chatMessages');
-    $('.chat-wrapper').hide();
-    $('#cv').hide();
-    $nickName.focus();
+  $chatWindow = $("#response");
+  chatMessages = document.querySelector("#chatMessages");
+  $(".chat-wrapper").hide();
+  $("#cv").hide();
+  $nickName.focus();
 
-    $('#enterRoom').click(function (evt) {
-        evt.preventDefault();
-        const nicknameInput = document.getElementById('nickname');
-        let isBadNickName = handleBadInputs(nicknameInput)
-     
-        if (isBadNickName) {
-            alert('Nickname is invalid.')
-            return;
-        }
-        connectToChatserver()
-        .then((_wssocket) => {
-          
-            _wssocket.onmessage = onMessageReceived;
-            console.table(serviceLocation);
-        })
-        .catch((error) => {
-            console.warn("WebSocket connection couldn't be established:", error.message);
-        });
+  $("#enterRoom").click(function (evt) {
+    evt.preventDefault();
+    const nicknameInput = document.getElementById("nickname");
+    let isBadNickName = handleBadInputs(nicknameInput);
 
-        $('.chat-wrapper h2').text('Chat # ' + $nickName.val() + "@" + room);
-        $('.chat-signin').hide();
-        $('.chat-wrapper').show();
-        $('#cv').show();
-        $message.focus();
-
-
-
-
-
-
-
-        let adminMessage = `
+    if (isBadNickName) {
+      alert("Nickname is invalid.");
+      return;
+    }
+    let adminMessage = `
         <div class="message text-white p-2 self-start my-2 rounded-md shadow mr-3"
                 style="background-color: rgb(79 70 229);">
             <div class="flex items-start justify-start mb-1">
@@ -180,41 +163,49 @@ $(document).ready(function () {
             </div>
             <div class="text-white" id="adminMessage"></div>
         </div>`;
-        chatMessages.innerHTML = adminMessage;
+    chatMessages.innerHTML = adminMessage;
 
-       (async () =>{
-        let saludo = 'Hola me alegra que podamos estar juntos y que por eso podamos conversar de una manera correcta para siempre. ';
-        let responseElement = document.getElementById('adminMessage');
-        let typingSpeed = 40;
+    connectToChatserver()
+      .then((_wssocket) => {
+        _wssocket.onmessage = onMessageReceived;
+        (async () => {
+            let saludo = "Bienvenido a nuestro chat en que puedo ayudarte?";
+            let responseElement = document.getElementById("adminMessage");
+            let typingSpeed = 40;
+            
+            await simulateTyping(saludo, responseElement, typingSpeed);
+            
+          })();
+      })
+      .catch((error) => {
+        console.warn(
+          "WebSocket connection couldn't be established:",
+          error.message
+        );
+       
+      })
       
-        await simulateTyping(saludo, responseElement, typingSpeed);
-       })()
-        
-    });
 
-    function wait(time) {
-        return new Promise(resolve => setTimeout(resolve, time));
-      }
+      $(".chat-wrapper h2").text("Chat # " + $nickName.val() + "@" + room);
+      $(".chat-signin").hide();
+      $(".chat-wrapper").show();
+      $("#cv").show();
+      $message.focus();
+
       
-    async function simulateTyping(text, element, speed) {
-        for (let i = 0; i < text.length; i++) {
-          element.textContent += text[i];
-          await wait(speed);
-        }
-    }
+  });
 
-    $('#do-chat').submit(function (evt) {
-        evt.preventDefault();
-        sendMessage()
-    });
+  $("#do-chat").submit(function (evt) {
+    evt.preventDefault();
+    sendMessage();
+  });
 
+  $("#do-sendInput").submit(function (evt) {
+    evt.preventDefault();
+    sendMessage();
+  });
 
-    $('#do-sendInput').submit(function (evt) {
-        evt.preventDefault();
-        sendMessage()
-    });
-
-    $('#leave-room').click(function () {
-        leaveRoom();
-    });
-})
+  $("#leave-room").click(function () {
+    leaveRoom();
+  });
+});
