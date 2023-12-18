@@ -103,8 +103,12 @@ $(document).ready(function () {
         evt.preventDefault();
         const nicknameInput = document.getElementById('nickname');
         let isBad = handleBadInputs(nicknameInput)
-        debugger
-        if (isBad) return;
+     
+        if (isBad) {
+            alert('Nickname is invalid.')
+            
+            return;
+        }
         connectToChatserver();
         $('.chat-wrapper h2').text('Chat # ' + $nickName.val() + "@" + room);
         $('.chat-signin').hide();
