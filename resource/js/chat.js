@@ -2,7 +2,7 @@ var wsocket;
 //var serviceLocation = "ws://0.0.0.0:8080/chat/";
 //var serviceLocation = "ws://192.168.100.3:8080/chat/";
 //let serverLocation = "localhost";
-const port = "8080";
+const port = "443";
 const chatRoute = "chat";
 //let localhost = window.location.hostname;
 const localhost = 'cv-chat-ia.onrender.com'
