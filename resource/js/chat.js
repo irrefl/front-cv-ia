@@ -142,7 +142,7 @@ $(document).ready(function () {
   $chatWindow = $("#response");
   chatMessages = document.querySelector("#chatMessages");
   $(".chat-wrapper").hide();
-  $("#cv").hide();
+ // $("#cv").hide();
   $nickName.focus();
 
   $("#enterRoom").click(function (evt) {

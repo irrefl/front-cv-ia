@@ -1,7 +1,7 @@
 const SignIn = () =>{
 
-    const template = `<div class="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 chat-signin">
-    <div class="bg-gradient-to-b from-black via-black to-transparent fixed inset-0"></div>
+    const template = `<div class="fixed bg-gray-900  inset-0 overflow-y-auto z-50 flex items-center justify-center  bg-opacity-50 chat-signin">
+   
     <div class="bg-white rounded-lg p-8 max-w-md mx-auto z-10 relative">
       <form class="form-signin">
         <h2 class="text-center text-green-700 text-lg font-bold mb-4">Chat</h2>
