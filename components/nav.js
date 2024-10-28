@@ -1,6 +1,6 @@
 const nav = () => {
   const template = ` <nav class="flex justify-end gap-2 py-4">
-<a href="https://www.linkedin.com/in/irvin-r-56b264186/" alt="Irvin Flores"
+<a href="https://www.linkedin.com/in/irrefl/" alt="Irvin Flores"
   class="bg-blue-500 hover:bg-blue-600 p-2 font-semibold text-white inline-flex items-center space-x-2 rounded"
   target="_blank">
   <svg class="w-5 h-5 fill-current" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
